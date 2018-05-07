@@ -36,7 +36,6 @@ namespace ACME.Controllers
         }
 
         // GET: Products/Create
-        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -47,20 +46,8 @@ namespace ACME.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId, Name, Price")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,Name,Price")] Product product)
         {
-            //if (string.IsNullOrEmpty(product.Name))
-            //{
-            //    ModelState.AddModelError("Name", "Name is a required field.");
-            //}
-
-            //if (ModelState.IsValidField("Price")
-            //    && (product.Price < 0.01M)
-            //    || (product.Price > 1000M))
-            //{
-            //    ModelState.AddModelError("Price", "Please enter a valid price between $0.01 and $1000.00");
-            //}
-
             if (ModelState.IsValid)
             {
                 product.ProductId = Guid.NewGuid();

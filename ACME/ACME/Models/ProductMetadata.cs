@@ -14,14 +14,13 @@ namespace ACME.Models
             [Key]
             public System.Guid ProductId { get; set; }
 
-            [Required(ErrorMessage = "This is a custom message.")]
+            [Required]
             [Display(Name = "Product Name")]
             [StringLength(10)]
             public string Name { get; set; }
 
             [Required]
             [RegularExpression(@"^\$?\d+(\.(\d{2}))?$")]
-            //[Range(0.01, 1000.0)]
             public decimal Price { get; set; }
         }
     }
