@@ -126,6 +126,14 @@ namespace ContosoUniversity.Controllers
             ViewBag.DepartmentID = new SelectList(departmentsQuery, "DepartmentID", "Name", selectedDepartment);
         }
 
+        private void PopulateClassroomsDropDownList(object selectedClassroom = null)
+        {
+            var classroomsQuery = from cr in db.Classrooms
+                                 orderby cr.BuildingName
+                                 select cr;
+            ViewBag.ClassroomID = new SelectList(classroomsQuery, "ClassroomID", "Room Name", selectedClassroom);
+        }
+
         // GET: Course/Delete/5
         public ActionResult Delete(int? id)
         {
