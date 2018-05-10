@@ -66,10 +66,11 @@
     <h3>Courses Taught by Selected Instructor</h3>
     <table class="table">
         <tr>
-            <th></th>
             <th>Number</th>
             <th>Title</th>
+            <th>Room</th>
             <th>Department</th>
+            <th></th>
         </tr>
 
         @foreach (var item in Model.Courses)
@@ -81,16 +82,19 @@
             }
             <tr class="@selectedRow">
                 <td>
-                    @Html.ActionLink("Select", "Index", new { courseID = item.CourseID })
-                </td>
-                <td>
                     @item.CourseID
                 </td>
                 <td>
                     @item.Title
                 </td>
                 <td>
+                    @item.ClassroomID
+                </td>
+                <td>
                     @item.Department.Name
+                </td>
+                <td>
+                    @Html.ActionLink("Select", "Index", new { courseID = item.CourseID })
                 </td>
             </tr>
         }
@@ -100,6 +104,20 @@
 
 @if (Model.Enrollments != null)
 {
+    <h4>
+        Details
+    </h4>
+    <table class="table">
+        <tr>
+            <td>
+                <strong>Room Name</strong>
+            </td>
+            <td>
+                @ViewBag.ClassroomID
+            </td>
+        </tr>
+    </table>
+
     <h3>
         Students Enrolled in Selected Course
     </h3>

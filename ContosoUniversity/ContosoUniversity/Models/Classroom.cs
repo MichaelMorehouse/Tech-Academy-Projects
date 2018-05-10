@@ -10,23 +10,10 @@ namespace ContosoUniversity.Models
     public class Classroom
     {
         [Key]
-        [Required]
-        [Column(Order = 1)]
-        public string BuildingName { get; set; }
-        [Key]
-        [Required]
-        [Column(Order = 2)]
-        public int RoomNumber { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Display(Name = "Room Name")]
+        public string ClassroomID { get; set; }
 
         public virtual ICollection<Course> Courses { get; set; }
-
-        [Display(Name = "Room Name")]
-        public string RoomName
-        {
-            get
-            {
-                return BuildingName + " " + RoomNumber;
-            }
-        }
     }
 }

@@ -196,6 +196,14 @@
     <Compile Include="Migrations\201805092337240_AddClassroomEntity.Designer.cs">
       <DependentUpon>201805092337240_AddClassroomEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805101659321_UpdateClassroom.cs" />
+    <Compile Include="Migrations\201805101659321_UpdateClassroom.Designer.cs">
+      <DependentUpon>201805101659321_UpdateClassroom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805101909145_ClassroomSeedData.cs" />
+    <Compile Include="Migrations\201805101909145_ClassroomSeedData.Designer.cs">
+      <DependentUpon>201805101909145_ClassroomSeedData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Classroom.cs" />
     <Compile Include="Models\Course.cs" />
@@ -309,6 +317,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805092337240_AddClassroomEntity.resx">
       <DependentUpon>201805092337240_AddClassroomEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101659321_UpdateClassroom.resx">
+      <DependentUpon>201805101659321_UpdateClassroom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101909145_ClassroomSeedData.resx">
+      <DependentUpon>201805101909145_ClassroomSeedData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

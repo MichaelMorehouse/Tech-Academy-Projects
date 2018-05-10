@@ -17,6 +17,7 @@ namespace ContosoUniversity.Models
         public int Credits { get; set; }
 
         public int DepartmentID { get; set; }
+        public string ClassroomID { get; set; }
 
         public virtual Department Department { get; set; }
         public virtual Classroom Classroom { get; set; }

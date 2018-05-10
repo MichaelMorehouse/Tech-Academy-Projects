@@ -42,6 +42,7 @@ namespace ContosoUniversity.Controllers
         public ActionResult Create()
         {
             PopulateDepartmentsDropDownList();
+            PopulateClassroomsDropDownList();
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace ContosoUniversity.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseID,Title,Credits,DepartmentID")]Course course)
+        public ActionResult Create([Bind(Include = "CourseID,Title,Credits,DepartmentID,ClassroomID")]Course course)
         {
             try
             {
@@ -67,6 +68,7 @@ namespace ContosoUniversity.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
             }
             PopulateDepartmentsDropDownList(course.DepartmentID);
+            PopulateClassroomsDropDownList(course.ClassroomID);
             return View(course);
         }
 
@@ -84,6 +86,7 @@ namespace ContosoUniversity.Controllers
                 return HttpNotFound();
             }
             PopulateDepartmentsDropDownList(course.DepartmentID);
+            PopulateClassroomsDropDownList(course.ClassroomID);
             return View(course);
         }
 
@@ -100,7 +103,7 @@ namespace ContosoUniversity.Controllers
             }
             var courseToUpdate = db.Courses.Find(id);
             if (TryUpdateModel(courseToUpdate, "",
-               new string[] { "Title", "Credits", "DepartmentID" }))
+               new string[] { "Title", "Credits", "DepartmentID", "ClassroomID", }))
             {
                 try
                 {
@@ -115,23 +118,8 @@ namespace ContosoUniversity.Controllers
                 }
             }
             PopulateDepartmentsDropDownList(courseToUpdate.DepartmentID);
+            PopulateClassroomsDropDownList(courseToUpdate.ClassroomID);
             return View(courseToUpdate);
-        }
-
-        private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
-        {
-            var departmentsQuery = from d in db.Departments
-                                   orderby d.Name
-                                   select d;
-            ViewBag.DepartmentID = new SelectList(departmentsQuery, "DepartmentID", "Name", selectedDepartment);
-        }
-
-        private void PopulateClassroomsDropDownList(object selectedClassroom = null)
-        {
-            var classroomsQuery = from cr in db.Classrooms
-                                 orderby cr.BuildingName
-                                 select cr;
-            ViewBag.ClassroomID = new SelectList(classroomsQuery, "ClassroomID", "Room Name", selectedClassroom);
         }
 
         // GET: Course/Delete/5
@@ -167,6 +155,22 @@ namespace ContosoUniversity.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private void PopulateDepartmentsDropDownList(object selectedDepartment = null)
+        {
+            var departmentsQuery = from d in db.Departments
+                                   orderby d.Name
+                                   select d;
+            ViewBag.DepartmentID = new SelectList(departmentsQuery, "DepartmentID", "Name", selectedDepartment);
+        }
+
+        private void PopulateClassroomsDropDownList(object selectedClassroom = null)
+        {
+            var classroomsQuery = from cr in db.Classrooms
+                                  orderby cr.ClassroomID
+                                  select cr;
+            ViewBag.ClassroomID = new SelectList(classroomsQuery, "ClassroomID", "ClassroomID", selectedClassroom);
         }
     }
 }

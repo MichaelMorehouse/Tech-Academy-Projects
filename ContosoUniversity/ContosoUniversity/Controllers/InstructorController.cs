@@ -36,10 +36,11 @@ namespace ContosoUniversity.Controllers
             if (courseID != null)
             {
                 ViewBag.CourseID = courseID.Value;
+                ViewBag.ClassroomID = viewModel.Courses.Where(
+                    x => x.CourseID == courseID).Single().ClassroomID;
                 viewModel.Enrollments = viewModel.Courses.Where(
                     x => x.CourseID == courseID).Single().Enrollments;
             }
-
             return View(viewModel);
         }
 

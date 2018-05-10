@@ -74,35 +74,76 @@ namespace ContosoUniversity.Migrations
             departments.ForEach(s => context.Departments.AddOrUpdate(p => p.Name, s));
             context.SaveChanges();
 
+            var classrooms = new List<Classroom>
+            {
+                new Classroom
+                {
+                    ClassroomID = "Smith 101",
+                },
+                new Classroom
+                {
+                    ClassroomID = "Smith 210",
+                },
+                new Classroom
+                {
+                    ClassroomID = "Gowan 112",
+                },
+                new Classroom
+                {
+                    ClassroomID = "Gowan 114",
+                },
+                new Classroom
+                {
+                    ClassroomID = "Thompson 212",
+                },
+                new Classroom
+                {
+                    ClassroomID = "Thompson 302",
+                },
+                new Classroom
+                {
+                    ClassroomID = "Thompson 106",
+                },
+            };
+            classrooms.ForEach(s => context.Classrooms.AddOrUpdate(p => p.ClassroomID, s));
+            context.SaveChanges();
+
             var courses = new List<Course>
             {
                 new Course {CourseID = 1050, Title = "Chemistry",      Credits = 3,
                   DepartmentID = departments.Single( s => s.Name == "Engineering").DepartmentID,
                   Instructors = new List<Instructor>()
+                  ,ClassroomID = "Smith 210"
                 },
                 new Course {CourseID = 4022, Title = "Microeconomics", Credits = 3,
                   DepartmentID = departments.Single( s => s.Name == "Economics").DepartmentID,
                   Instructors = new List<Instructor>()
+                  ,ClassroomID = "Thompson 106"
                 },
                 new Course {CourseID = 4041, Title = "Macroeconomics", Credits = 3,
                   DepartmentID = departments.Single( s => s.Name == "Economics").DepartmentID,
                   Instructors = new List<Instructor>()
+                  ,ClassroomID = "Thompson 106"
                 },
                 new Course {CourseID = 1045, Title = "Calculus",       Credits = 4,
                   DepartmentID = departments.Single( s => s.Name == "Mathematics").DepartmentID,
                   Instructors = new List<Instructor>()
+                  ,ClassroomID = "Thompson 212"
                 },
                 new Course {CourseID = 3141, Title = "Trigonometry",   Credits = 4,
                   DepartmentID = departments.Single( s => s.Name == "Mathematics").DepartmentID,
                   Instructors = new List<Instructor>()
+                  ,ClassroomID = "Thompson 302"
                 },
                 new Course {CourseID = 2021, Title = "Composition",    Credits = 3,
                   DepartmentID = departments.Single( s => s.Name == "English").DepartmentID,
                   Instructors = new List<Instructor>()
+                  ,ClassroomID = "Gowan 112"
                 },
                 new Course {CourseID = 2042, Title = "Literature",     Credits = 4,
                   DepartmentID = departments.Single( s => s.Name == "English").DepartmentID,
                   Instructors = new List<Instructor>()
+                  ,ClassroomID = "Gowan 114"
                 },
             };
             courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseID, s));
@@ -112,10 +153,10 @@ namespace ContosoUniversity.Migrations
             {
                 new OfficeAssignment {
                     InstructorID = instructors.Single( i => i.LastName == "Fakhouri").ID,
-                    Location = "Smith 17" },
+                    Location = "Smith 117" },
                 new OfficeAssignment {
                     InstructorID = instructors.Single( i => i.LastName == "Harui").ID,
-                    Location = "Gowan 27" },
+                    Location = "Gowan 127" },
                 new OfficeAssignment {
                     InstructorID = instructors.Single( i => i.LastName == "Kapoor").ID,
                     Location = "Thompson 304" },
